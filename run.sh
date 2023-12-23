@@ -21,8 +21,9 @@ echo "             __              __                __              __    "
  #else
  #    omd start mon
  #    sleep infinity
- omd start mon
- sleep infinity
+omd config "$SITE" set APACHE_TCP_ADDR 0.0.0.0
+omd start mon
+tail -f "/opt/omd/sites/mon/var/log/nagios.log"
 #  fi
 
 
@@ -44,6 +45,7 @@ echo "             __              __                __              __    "
 # else
 #     omd start mon
 #     sleep infinity
+
 # omd start mon
 # sleep infinity
 # fi
