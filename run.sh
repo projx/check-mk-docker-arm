@@ -13,17 +13,16 @@ echo "             __              __                __              __    "
  if ! id -u mon &>/dev/null; then
      useradd -g 1000 -u 1000 -ms /bin/bash -d /omd/sites/mon mon
  fi
-    usermod -aG mon www-data
-    usermod -aG omd mon
-    omd mv mon temp
-    omd mv temp mon
-    omd enable mon
- #else
- #    omd start mon
- #    sleep infinity
-omd config "$SITE" set APACHE_TCP_ADDR 0.0.0.0
+ 
+usermod -aG mon www-data
+usermod -aG omd mon
+#omd mv mon temp
+#omd mv temp mon
+omd enable mon
+ 
+md config mon set APACHE_TCP_ADDR 0.0.0.0
 omd start mon
-tail -f "/opt/omd/sites/mon/var/log/nagios.log"
+tail -f "/opt/omd/sites/mon/var/log/nagios.log" && tail -f "/omd/sites/mon/var/nagios/livestatus.log"
 #  fi
 
 
