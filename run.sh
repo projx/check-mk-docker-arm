@@ -16,11 +16,10 @@ echo "             __              __                __              __    "
  
 usermod -aG mon www-data
 usermod -aG omd mon
-#omd mv mon temp
-#omd mv temp mon
+omd mv mon temp
+omd mv temp mon
 omd enable mon
- 
-md config mon set APACHE_TCP_ADDR 0.0.0.0
+# md config mon set APACHE_TCP_ADDR 0.0.0.0
 omd start mon
 tail -f "/opt/omd/sites/mon/var/log/nagios.log" && tail -f "/omd/sites/mon/var/nagios/livestatus.log"
 #  fi
