@@ -2,10 +2,14 @@
 Check MK Docker build for ARM (Usage with OCI etc)
 
 # Build
-sudo docker build --no-cache -t projx/check-mk-docker-arm:latest .
+docker build -t projx/check-mk-docker-arm:latest .
+docker build --no-cache -t projx/check-mk-docker-arm:latest .
 
 # Test
-docker run -d --name checkmk -v /store/gfs/checkmk:/opt/omd/sites -p 5000:5000 projx/check-mk-docker-arm:latest
+Console: docker run --name checkmk -v /store/gfs/checkmk:/opt/omd/sites -p 5000:5000 projx/check-mk-docker-arm:latest
+Daemon:  docker run -d --name checkmk -v /store/gfs/checkmk:/opt/omd/sites -p 5000:5000 projx/check-mk-docker-arm:latest
+
+docker exec -it 5e08e9a69e90 /bin/bash
 
 # Pull for ghcr.io
 docker pull ghcr.io/projx/check-mk-docker-arm:latest
